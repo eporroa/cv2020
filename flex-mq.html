@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <style>
+        /* Mobile First */
+        body{
+            background-color: green;
+            color: #ffffff;
+        }
+        .container{
+            display: flex;
+            flex-direction: column;
+        }
+        header{
+            display: flex;
+            align-content: center;
+            align-items: center;
+        }
+            .menu{
+                text-align: right;
+            }
+
+        /*  Cel actual */
+        @media screen and (min-width: 425px) {
+            body{
+                background-color: blue;
+                color: white;
+            }
+        }
+
+        /*  Tablet vertical */
+        @media screen and (min-width: 768px) {
+            body{
+                background-color: red;
+                color: white;
+            }
+            .container{
+                flex-direction: row;
+            }
+                header{
+                    width: 30%;
+                }
+                    .menu{
+                        display: none;
+                    }
+
+                section{
+                    width: 70%;
+                }
+        }
+
+        /*  Desktop */
+        @media screen and (min-width: 960px) {
+            body{
+                background-color: black;
+                color: white;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Bienvenidos</h1>
+            <p class="menu">
+                Menú 
+                <i class="fa fa-bars"></i>
+            </p>
+        </header>
+        <section>
+            <h1>Lorem ipsum dolor</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae consequuntur, quod voluptatibus quidem, adipisci distinctio vero quibusdam, consectetur eum modi expedita! Natus, sapiente dolores quae atque repudiandae nisi voluptas ut.</p>
+        </section>
+    </div>
+</body>
+</html>

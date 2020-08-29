@@ -15,11 +15,33 @@ h6 {
     font-weight: normal;
 }
 
+.resaltado-amarillo {
+    background-color: yellow;
+    font-weight: bold;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+.resaltado-oscuro {
+    background-color: black;
+    font-weight: bold;
+    color: rgb(255, 241, 115);
+    padding-left: 3px;
+    padding-right: 3px;
+    font-size: 20px;
+}
+
 article {
     background-color: rgb(231, 231, 231);
     margin-bottom: 15px;
     padding: 15px;
     transition: all 0.3s;
+    cursor: pointer;
+}
+
+article a {
+    text-decoration: none;
+    color: inherit;
 }
 
 article:hover {
@@ -34,35 +56,114 @@ article:hover {
     margin: 0 auto;
 }
 
-    header {
-        /* background-color: rgb(49, 49, 49);
-        color: white; */
-        margin-bottom: 15px;
-        padding: 15px;
-        display: flex;
+header {
+    /* background-color: rgb(49, 49, 49);
+    color: white; */
+    margin-bottom: 15px;
+    padding: 15px;
+    width: 30%;
+    margin-right: 15px;
+    border-right: 2px solid rgb(49, 49, 49);
+  	
+}
+
+.img-avatar {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-right: 15px;
+    border-radius: 100%;
+}
+
+.imagen-titulo {
+    display: flex;
+}
+
+.titulos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+header p {
+    margin-top: 20px;
+}
+
+.contenido {
+    width: 60%;
+}
+
+.active {
+    background-color: rgb(33, 34, 41);
+    color: white;
+}
+
+article ul {
+    display: none;
+}
+
+article.active ul {
+    display: block;
+}
+
+img.big {
+    transform: scale(1.5);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+
+.info-personal p{
+    text-align: right;
+    padding-right: 30px;
+}
+.info-personal p strong{
+    font-size: 16px;
+    color: #03a9f4;
+    display: block;
+}
+
+.info-personal .ico .fa{
+    font-size: 18px;
+}
+.info-personal .ico{
+    background-color: black;
+    color: white;
+    padding: 4px;
+    height: 20px;
+    width: 20px;
+    border-radius: 60%;
+    float: right;
+    margin-top: -20px;
+    margin-right: -34px;
+    text-align: center;
+}
+
+
+@media screen and (max-width: 680px) {
+    .contenedor{
+        width: 100%;
         flex-direction: column;
+    }
+    header{
+        border: 0;
+        padding: 0;
+    }
+    header, .contenido{
+        width: 100%;
+    }
+
+    .info-personal{
+        display: flex;
+        justify-content: space-around;
+        /* align-items: center; */
+    }
+    .info-personal p{
         width: 30%;
-        margin-right: 15px;
-        border-right: 2px solid rgb(49, 49, 49);
+        text-align: center;
     }
-
-    .img-avatar {
-        width: 80px;
-        height: 80px;
-        object-fit: cover;
-        margin-right: 15px;
-        border-radius: 100%;
+    .info-personal .ico{
+        float: none;
+        display: block;
+        margin: 0 auto;
     }
-
-        header div {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-        }
-
-    .contenido{
-        width: 70%;
-    }
-
-
-
+}
