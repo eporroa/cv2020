@@ -15,6 +15,10 @@ h6 {
     font-weight: normal;
 }
 
+.oculto{
+    display: none !important;
+}
+
 .resaltado-amarillo {
     background-color: yellow;
     font-weight: bold;
@@ -98,13 +102,13 @@ header p {
     color: white;
 }
 
-article ul {
+/* article ul {
     display: none;
 }
 
 article.active ul {
     display: block;
-}
+} */
 
 img.big {
     transform: scale(1.5);
@@ -116,10 +120,17 @@ img.big {
     text-align: right;
     padding-right: 30px;
 }
-.info-personal p strong{
+
+.info-personal p strong,
+article h4,
+.titulo {
     font-size: 16px;
     color: #03a9f4;
     display: block;
+    margin-bottom: 10px;
+}
+.info-personal p strong{
+    margin-bottom: 5px;
 }
 
 .info-personal .ico .fa{
@@ -137,6 +148,38 @@ img.big {
     margin-right: -34px;
     text-align: center;
 }
+
+.lenguajes{
+    margin-top: 30px;
+    text-align: right;
+}
+    .lenguajes p{
+        font-style: italic;
+    }
+
+    .barra{
+        display: block;
+        padding-top: 4px;
+    }
+
+        .barra span{
+            display: inline-block;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background-color: gray;
+            color: white;
+            font-style: normal;
+            line-height: 2;
+            text-align: center;
+            
+            /* Esto corrige que el circulo se mueva */
+            overflow: hidden;
+        }
+        .barra .exp{
+            background-color: #222222;
+        }
+
 
 
 @media screen and (max-width: 680px) {
