@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+</head>
+<body>
+    <form method="POST" action="" onsubmit="enviar()">
+        <input id="valor1" name="valor1" type="text">
+        <input id="valor2" name="valor2" type="text">
+        = 
+        <span id="resultado">0</span>
+        <br />
+        <button type="button" onclick="sumar()">+</button>
+        <button type="button" onclick="restar()">-</button>
+        <button type="button" onclick="multiplicar()">*</button>
+        <button type="button" onclick="dividir()">/</button>
+
+        <button
+            type="reset"
+            onclick="console.log('click')"
+        >Restablecer</button>
+
+        <button
+            type="submit"
+            onclick="console.log('click')"
+        >Calcular</button>
+    </form>
+
+    <script>
+        function sumar(){
+            window.event.preventDefault();
+            var valorUno = Number( document.querySelector("#valor1").value );
+            var valorDos = Number( document.querySelector("#valor2").value );
+            var total = valorUno + valorDos;
+            var resultado = document.querySelector("#resultado");
+            resultado.innerHTML = total.toString();
+        }
+        function restar(){
+            window.event.preventDefault();
+            var valorUno = Number( document.querySelector("#valor1").value );
+            var valorDos = Number( document.querySelector("#valor2").value );
+            var total = valorUno - valorDos;
+            var resultado = document.querySelector("#resultado");
+            resultado.innerHTML = total.toString();
+        }
+        function multiplicar(){
+            window.event.preventDefault();
+            var valorUno = Number( document.querySelector("#valor1").value );
+            var valorDos = Number( document.querySelector("#valor2").value );
+            var total = valorUno * valorDos;
+            var resultado = document.querySelector("#resultado");
+            resultado.innerHTML = total.toString();
+
+        }
+        function dividir(){
+            window.event.preventDefault();
+            var valorUno = Number( document.querySelector("#valor1").value );
+            var valorDos = Number( document.querySelector("#valor2").value );
+            var total = valorUno / valorDos;
+            var resultado = document.querySelector("#resultado");
+            resultado.innerHTML = total.toString();
+        }
+
+        function enviar(){
+            window.event.preventDefault();
+            var valorUno = Number( document.querySelector("#valor1").value );
+            var valorDos = Number( document.querySelector("#valor2").value );
+            var total = valorUno + valorDos;
+
+            if( Number.isNaN(total) ){
+                console.log("Ingresaste un texto!");
+            } else {
+                console.log(total);
+            }
+
+            return false;
+        }
+    </script>
+</body>
+</html>
