@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+</head>
+<body>
+    <form method="POST" action="" onsubmit="calcular()">
+        <button onclick="agregarItem()">+</button>
+        <div id="campos">
+            <input id="valor1" name="valor1" type="text">
+            <input id="valor2" name="valor2" type="text">
+        </div>
+        = 
+        <span id="resultado">0</span>
+        <br />
+        <select id="tipo" name="tipo">
+            <option value="sumar">Sumar</option>
+            <option value="restar">Restar</option>
+            <option value="multiplicar">Multiplicar</option>
+            <option value="dividir">Dividir</option>
+            <option value="mayorQue">Buscar mayor</option>
+            <option value="menorQue">Buscar menor</option>
+        </select>
+
+        <button
+            type="reset"
+            onclick="console.log('click')"
+        >Restablecer</button>
+
+        <button
+            type="submit"
+            onclick="console.log('click')"
+        >Calcular</button>
+    </form>
+
+    <script>
+        function obtenerValores(){
+            var inputs = document.querySelectorAll("#campos input");
+            var resultado = [];
+            inputs.forEach( function( i ){
+                if( i.value !== "" ) {
+                    resultado.push(Number(i.value))
+                }
+            });
+            return resultado;
+        }
+        function mostrarResultado(total){
+            var resultado = document.querySelector("#resultado");
+            resultado.innerHTML = total.toString();
+        }
+
+        function sumar(entrada){
+            window.event.preventDefault();
+            var total = 0;
+            entrada.forEach( function(valor) {
+                total = total + valor;
+            } );
+            mostrarResultado(total);
+        }
+        function restar(entrada){
+            window.event.preventDefault();
+            var total = 0;
+            entrada.forEach( function(valor) {
+                total = total - valor;
+            } );
+            mostrarResultado(total);
+        }
+        function multiplicar(entrada){
+            window.event.preventDefault();
+            var total = 0;
+            entrada.forEach( function(valor) {
+                total = total * valor;
+            } );
+            mostrarResultado(total);
+        }
+        function dividir(entrada){
+            window.event.preventDefault();
+            var total = 0;
+            entrada.forEach( function(valor) {
+                total = total / valor;
+            } );
+            mostrarResultado(total);
+        }
+
+        function mayorQue(){
+        }
+        function menorQue(){
+        }
+
+        function agregarItem(){
+            var campos = document.querySelector("#campos");
+            var nuevoInput = document.createElement("input");
+            nuevoInput.name = "valor";
+            campos.appendChild(nuevoInput);
+        }
+
+        function calcular(){
+            window.event.preventDefault();
+            
+            var valores = obtenerValores();
+            var valorTipo = document.querySelector("#tipo");
+
+            switch(valorTipo.value){
+                case "sumar":
+                    sumar(valores);
+                break;
+                case "restar":
+                    restar(valores);
+                break;
+                case "multiplicar":
+                    multiplicar(valores);
+                break;
+                case "dividir":
+                    dividir(valores);
+                break;
+                case "mayorQue":
+                    mayorQue();
+                break;
+                case "menorQue":
+                    menorQue();
+                break;
+                default:
+                    console.log("Opción no soportada");
+            }
+
+            return false;
+        }
+    </script>
+</body>
+</html>
