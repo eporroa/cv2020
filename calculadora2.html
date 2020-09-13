@@ -9,8 +9,7 @@
     <form method="POST" action="" onsubmit="calcular()">
         <button onclick="agregarItem()">+</button>
         <div id="campos">
-            <input id="valor1" name="valor1" type="text">
-            <input id="valor2" name="valor2" type="text">
+            <input id="valor1" name="valor1" type="number">
         </div>
         = 
         <span id="resultado">0</span>
@@ -22,11 +21,12 @@
             <option value="dividir">Dividir</option>
             <option value="mayorQue">Buscar mayor</option>
             <option value="menorQue">Buscar menor</option>
+            <option value="promedio">Promedio</option>
         </select>
 
         <button
             type="reset"
-            onclick="console.log('click')"
+            onclick="mostrarResultado(0)"
         >Restablecer</button>
 
         <button
@@ -61,7 +61,7 @@
         }
         function restar(entrada){
             window.event.preventDefault();
-            var total = 0;
+            var total = entrada[0];
             entrada.forEach( function(valor) {
                 total = total - valor;
             } );
@@ -69,7 +69,7 @@
         }
         function multiplicar(entrada){
             window.event.preventDefault();
-            var total = 0;
+            var total = entrada[0];
             entrada.forEach( function(valor) {
                 total = total * valor;
             } );
@@ -84,15 +84,30 @@
             mostrarResultado(total);
         }
 
-        function mayorQue(){
+        function mayorQue(entrada){
+            var total = Math.max.apply(this, entrada);
+            mostrarResultado(total);
         }
         function menorQue(){
+            var total = Math.min.apply(this, entrada);
+            mostrarResultado(total);
         }
+        function promedio(entrada) {
+            var total = 0;
+            entrada.forEach( function(valor) {
+                total = total + valor;
+            } );
+
+            var promedio = total / entrada.length;
+            mostrarResultado(promedio.toFixed(2));
+        }
+        
 
         function agregarItem(){
             var campos = document.querySelector("#campos");
             var nuevoInput = document.createElement("input");
             nuevoInput.name = "valor";
+            nuevoInput.type = "number";
             campos.appendChild(nuevoInput);
         }
 
@@ -116,10 +131,13 @@
                     dividir(valores);
                 break;
                 case "mayorQue":
-                    mayorQue();
+                    mayorQue(valores);
                 break;
                 case "menorQue":
-                    menorQue();
+                    menorQue(valores);
+                break;
+                case "promedio":
+                    promedio(valores);
                 break;
                 default:
                     console.log("Opción no soportada");

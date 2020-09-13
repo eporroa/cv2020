@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista por Hacer</title>
+    <style>
+        body, input, button{
+            font-size: 1.8rem;
+        }
+        .hecho {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <input id="mensaje" type="text">
+        <button type="button" onclick="nuevoItem()">Agregar</button>
+        <button type="button" onclick="limpiarListos()">Borrar Listos</button>
+    </form>
+    <ul id="listado">
+    </ul>
+    <script>
+        function quitarElemento(evento){
+            evento.stopPropagation();
+            var button = evento.currentTarget;
+            button.parentElement.style.display = "none";
+            guardar();
+        }
+
+        function limpiarListos() {
+            var listadoListos = document.querySelectorAll("#listado .hecho");
+            listadoListos.forEach( function(item) {
+                item.style.display = "none";
+            });
+        }
+
+        function nuevoItem(mensaje, hecho = false, oculto = false){
+            if(mensaje === undefined) {
+                mensaje = document.querySelector("#mensaje").value;
+            }
+
+            var listado = document.querySelector("#listado");
+
+            var listadoItem = document.createElement("li");
+            var listadoEtiqueta = document.createTextNode(mensaje);
+            var listadoBotonRemover = document.createElement("button");
+            var botonRemoverEtiqueta = document.createTextNode("x");
+            listadoBotonRemover.appendChild(botonRemoverEtiqueta);
+            listadoBotonRemover.type = "button";
+            listadoBotonRemover.addEventListener("click", quitarElemento);
+            
+            listadoItem.appendChild(listadoEtiqueta);
+            listadoItem.appendChild(listadoBotonRemover);
+
+            listadoItem.addEventListener("click", function (evento) {
+                // evento.currentTarget.style.textDecoration = "line-through"
+                evento.currentTarget.classList.toggle("hecho");
+                guardar();
+            })
+
+            listado.appendChild(listadoItem);
+
+            if(hecho){
+                listadoItem.classList.toggle("hecho");
+            }
+
+            if(oculto){
+                listadoItem.style.display = "none";
+            }
+
+            guardar();
+        }
+
+        function guardar() {
+            var listado = document.querySelectorAll("#listado li");
+            var listadoArreglo = [];
+            listado.forEach(function (item) {
+                listadoArreglo.push(
+                    {
+                        texto: item.firstChild.textContent,
+                        oculto: item.style.display === "none",
+                        hecho: item.classList.contains("hecho")
+                    }
+                )
+            });
+
+            window.localStorage.setItem("todo", JSON.stringify(listadoArreglo));
+        }
+
+        var todoDatos = window.localStorage.getItem("todo");
+        if(todoDatos){
+            todoDatos = JSON.parse(todoDatos);
+            console.log("Se encontraron datos");
+            
+            todoDatos.forEach( function(item) {
+                nuevoItem(item.texto, item.hecho, item.oculto );
+            })
+        }
+
+    </script>
+</body>
+</html>
